@@ -1,11 +1,16 @@
 CC=g++
-SRC=main.cpp image.cpp
+SRC=camera.cpp geometry.cpp image.cpp main.cpp material.cpp raytracer.cpp scene.cpp
 TARGET=raytracer
-CFLAGS=-std=c++17 -O3
+CFLAGS=-std=c++17
 LDFLAGS=
+RELEASE=-O3
+DEBUG=-g -Wall
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(SRC) -o $(TARGET)
+release: $(SRC)
+	$(CC) $(CFLAGS) $(RELEASE) $(LDFLAGS) $(SRC) -o $(TARGET)
+
+debug: $(SRC)
+	$(CC) $(CFLAGS) $(DEBUG) $(LDFLAGS) $(SRC) -o $(TARGET)
 
 clean:
 	rm raytracer

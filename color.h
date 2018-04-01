@@ -3,8 +3,8 @@
 #ifndef COLOR_H_
 #define COLOR_H_
 
-#include <stdint.h>
 #include <math.h>
+#include <stdint.h>
 
 #include "./math.h"
 #include "./vec3.h"

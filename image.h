@@ -17,7 +17,7 @@ class Image {
     image.pixels_ = nullptr;
   }
 
-  T operator()(int x, int y) const {
+  const T& operator()(int x, int y) const {
     return pixels_[x + y * width_];
   }
 
