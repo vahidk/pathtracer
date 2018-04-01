@@ -28,8 +28,10 @@ int main() {
   Object object_c = { &sphere_c, &material_c };
   scene.AddObject(&object_c);
 
+  Camera camera(Vec3f(0, 0, 1), Vec3f(0, 0, 0), Vec3f(0, 1, 0), 90, 1.33f);
+
   Raytracer raytracer(640, 480, 64, 50);
-  const Image<RGBA>& image = raytracer.Render(scene);
+  const Image<RGBA>& image = raytracer.Render(scene, camera);
 
   WriteImageToPPM(image, "output.ppm");
 

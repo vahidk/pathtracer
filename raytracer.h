@@ -22,7 +22,6 @@ class Raytracer {
   Raytracer(int width, int height, int num_samples, int max_depth) :
     num_samples_(num_samples),
     max_depth_(50),
-    camera_(width, height),
     image_(width, height) {}
 
   Vec3f Trace(const Scene& scene, const Ray& ray, int depth) {
@@ -45,14 +44,16 @@ class Raytracer {
     }
   }
 
-  const Image<RGBA>& Render(const Scene& scene) {
+  const Image<RGBA>& Render(const Scene& scene, const Camera& camera) {
+    float inv_width = 1.0f / image_.Width();
+    float inv_height = 1.0f / image_.Height();
     for (int j = 0; j < image_.Height(); ++j) {
       for (int i = 0; i < image_.Width(); ++i) {
         Vec3f color(0, 0, 0);
         for (int k = 0; k < num_samples_; ++k) {
-          Ray ray = camera_.GetRay(
-            i + Random::Uniform(),
-            j + Random::Uniform());
+          Ray ray = camera.GetRay(
+            (i + Random::Uniform()) * inv_width,
+            1 - (j + Random::Uniform()) * inv_height);
           color = color + Trace(scene, ray, 0);
         }
         color = color / static_cast<float>(num_samples_);
@@ -65,7 +66,6 @@ class Raytracer {
  private:
   int num_samples_;
   int max_depth_;
-  Camera camera_;
   Image<RGBA> image_;
 };
 
