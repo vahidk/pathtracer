@@ -35,7 +35,6 @@ int main() {
 
   Sphere sphere_d(Vec3f(-1.2, 0.0, 0.5f), 0.5);
   Metal material_d(Vec3f(0.9f, 0.9f, 0.9f), 0.0f);
-  // Dielectric material_d(1.33f);
   Object object_d = { &sphere_d, &material_d };
   scene.AddObject(&object_d);
 

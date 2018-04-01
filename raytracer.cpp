@@ -20,7 +20,7 @@ Vec3f Raytracer::Trace(const Scene& scene, const Ray& ray, int depth) {
     Ray scattered;
     if (depth < max_depth_ &&
         obj->material->Scatter(ray, result, &attenuation, &scattered)) {
-      Vec3f ref_color = Trace(scene, scattered, depth);
+      Vec3f ref_color = Trace(scene, scattered, depth + 1);
       return ref_color * attenuation;
     } else {
       return Vec3f(0, 0, 0);
