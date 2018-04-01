@@ -8,6 +8,24 @@
 #include "./vec3.h"
 
 template<class T>
+class RandomPointInUnitDisk {
+ public:
+  RandomPointInUnitDisk() : uniform_dist_(-1, 1) {}
+
+  template<class URNG>
+  Vec3<T> operator()(URNG& g) {
+    Vec3<T> u;
+    do {
+      u = Vec3<T>(uniform_dist_(g), uniform_dist_(g), 0.0f);
+    } while (SquaredLength(u) >= 1.0);
+    return u;
+  }
+
+ private:
+  std::uniform_real_distribution<T> uniform_dist_;
+};
+
+template<class T>
 class RandomPointInUnitSphere {
  public:
   RandomPointInUnitSphere() : uniform_dist_(-1, 1) {}
@@ -35,6 +53,11 @@ class Random {
   static float Uniform() {
     static std::uniform_real_distribution<float> uniform_dist(0, 1);
     return uniform_dist(Generator());
+  }
+
+  static Vec3f PointInUnitDisk() {
+    static RandomPointInUnitDisk<float> disk_dist;
+    return disk_dist(Generator());
   }
 
   static Vec3f PointInUnitSphere() {
