@@ -1,3 +1,6 @@
 .DS_Store
 raytracer
-output.ppm
+output.jpg
+3rdparty
+CMake*
+Makefile

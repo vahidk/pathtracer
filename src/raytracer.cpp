@@ -8,7 +8,7 @@
 
 Raytracer::Raytracer(int width, int height, int num_samples, int max_depth) :
   num_samples_(num_samples),
-  max_depth_(10),
+  max_depth_(max_depth),
   image_(width, height) {}
 
 Vec3f Raytracer::Trace(const Scene& scene, const Ray& ray, int depth) {

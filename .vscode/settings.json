@@ -27,6 +27,13 @@
         "ratio": "cpp",
         "system_error": "cpp",
         "tuple": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "ios": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "__split_buffer": "cpp",
+        "utility": "cpp",
+        "iostream": "cpp"
     }
 }

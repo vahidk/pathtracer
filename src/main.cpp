@@ -43,10 +43,10 @@ int main() {
   Vec3f up(0, 1, 0);
   Camera camera(from, to, up, 45, 1.33f, 0.2f, Length(to - from));
 
-  Raytracer raytracer(640, 480, 64, 50);
+  Raytracer raytracer(640, 480, 64, 10);
   const Image<RGBA>& image = raytracer.Render(scene, camera);
 
-  WriteImageToPPM(image, "output.ppm");
+  WriteImage("output.jpg", image);
 
   return 0;
 }
