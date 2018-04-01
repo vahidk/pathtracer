@@ -38,23 +38,20 @@ float schlick(float cosine, float ri) {
 
 bool Dielectric::Scatter(const Ray& ray, const TraceResult& result,
                          Vec3f* attenuation, Ray* scattered) const {
-  Vec3f normal;
   float ratio;
   float cosine;
   float ddn = Dot(ray.direction, result.normal);
   if (ddn > 0) {
-    normal = -result.normal;
     ratio = ri_;
     cosine = sqrtf(1 - ri_ * ri_ * (1 - ddn * ddn));
   } else {
-    normal = result.normal;
     ratio = 1 / ri_;
     cosine = -ddn;
   }
 
   Vec3f refraction;
   float reflect_prob;
-  if (Refract(ray.direction, normal, ratio, &refraction)) {
+  if (Refract(ray.direction, result.normal, ratio, &refraction)) {
     reflect_prob = schlick(cosine, ri_);
   } else {
     reflect_prob = 1.0f;

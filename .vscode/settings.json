@@ -34,6 +34,7 @@
         "string_view": "cpp",
         "__split_buffer": "cpp",
         "utility": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "__string": "cpp"
     }
 }

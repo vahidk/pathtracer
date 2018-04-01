@@ -20,7 +20,6 @@ class Geometry {
 
 class Sphere : public Geometry {
  public:
-  Sphere() = default;
   Sphere(const Vec3f& center, float radius);
 
   bool Trace(const Ray& ray, float start, float end,
@@ -29,6 +28,18 @@ class Sphere : public Geometry {
  private:
   Vec3f center;
   float radius;
+};
+
+class Plane : public Geometry {
+ public:
+  Plane(const Vec3f& normal, float d);
+
+  bool Trace(const Ray& ray, float start, float end,
+             TraceResult* result) const override;
+
+ private:
+  Vec3f normal;
+  float d;
 };
 
 #endif  // GEOMETRY_H_
