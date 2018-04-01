@@ -1,5 +1,6 @@
 // Copyright 2018, Vahid Kazemi
 
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 #include "./camera.h"
