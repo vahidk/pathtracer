@@ -3,6 +3,8 @@
 #ifndef IMAGE_H_
 #define IMAGE_H_
 
+#include <vector>
+
 #include "./color.h"
 
 template<class T>
