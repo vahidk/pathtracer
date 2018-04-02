@@ -38,6 +38,7 @@
         "__string": "cpp",
         "__tree": "cpp",
         "map": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "thread": "cpp"
     }
 }

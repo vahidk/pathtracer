@@ -17,7 +17,7 @@ class Raytracer {
   void SetSamples(int num_samples);
   void SetMaxDepth(int max_depth);
 
-  Vec3f Trace(const Scene& scene, const Ray& ray, int depth);
+  Vec3f Trace(const Scene& scene, const Ray& ray, int depth) const;
 
   const Image<RGBA>& Render(const Scene& scene, const Camera& camera);
 

@@ -3,6 +3,7 @@
 #include <float.h>
 #include <random>
 
+#include "./concurrency.h"
 #include "./rand.h"
 #include "./raytracer.h"
 
@@ -23,7 +24,7 @@ void Raytracer::SetMaxDepth(int max_depth) {
   max_depth_ = max_depth;
 }
 
-Vec3f Raytracer::Trace(const Scene& scene, const Ray& ray, int depth) {
+Vec3f Raytracer::Trace(const Scene& scene, const Ray& ray, int depth) const {
   TraceResult result;
   const Object* obj = scene.Trace(ray, 0.001, FLT_MAX, &result);
 
@@ -46,7 +47,7 @@ Vec3f Raytracer::Trace(const Scene& scene, const Ray& ray, int depth) {
 const Image<RGBA>& Raytracer::Render(const Scene& scene, const Camera& camera) {
   float inv_width = 1.0f / image_.Width();
   float inv_height = 1.0f / image_.Height();
-  for (int j = 0; j < image_.Height(); ++j) {
+  ParallelFor(0, image_.Height(), [&](int j){
     for (int i = 0; i < image_.Width(); ++i) {
       Vec3f color(0, 0, 0);
       for (int k = 0; k < num_samples_; ++k) {
@@ -58,6 +59,6 @@ const Image<RGBA>& Raytracer::Render(const Scene& scene, const Camera& camera) {
       color = color / static_cast<float>(num_samples_);
       image_(i, j) = Vec3fToRGBA(GammaCorrect(color, 2.0f));
     }
-  }
+  });
   return image_;
 }

@@ -51,17 +51,17 @@ class Random {
   }
 
   static float Uniform() {
-    static std::uniform_real_distribution<float> uniform_dist(0, 1);
+    thread_local static std::uniform_real_distribution<float> uniform_dist(0, 1);
     return uniform_dist(Generator());
   }
 
   static Vec3f PointInUnitDisk() {
-    static RandomPointInUnitDisk<float> disk_dist;
+    thread_local static RandomPointInUnitDisk<float> disk_dist;
     return disk_dist(Generator());
   }
 
   static Vec3f PointInUnitSphere() {
-    static RandomPointInUnitSphere<float> sphere_dist;
+    thread_local static RandomPointInUnitSphere<float> sphere_dist;
     return sphere_dist(Generator());
   }
 };
