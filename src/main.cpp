@@ -4,8 +4,9 @@
 #include <random>
 
 #include "./raytracer.h"
+#include "./script.h"
 
-int main() {
+void SampleScene() {
   Scene scene;
 
   Sphere sphere_g(Vec3f(0, -1000, -1), 999.5);
@@ -47,6 +48,13 @@ int main() {
   const Image<RGBA>& image = raytracer.Render(scene, camera);
 
   WriteImage("output.jpg", image);
+}
 
+int main(int argc, char** argv) {
+  if (argc > 1) {
+    Script().Run(argv[1]);
+  } else {
+    SampleScene();
+  }
   return 0;
 }

@@ -14,6 +14,8 @@ struct TraceResult {
 
 class Geometry {
  public:
+  virtual ~Geometry() {}
+
   virtual bool Trace(const Ray& ray, float start, float end,
                      TraceResult* result) const = 0;
 };

@@ -1,6 +1,6 @@
 .DS_Store
 raytracer
-output.jpg
 3rdparty
 CMake*
+CPack*
 Makefile

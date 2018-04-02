@@ -9,6 +9,8 @@
 
 class Material {
  public:
+  virtual ~Material() {}
+
   virtual bool Scatter(const Ray& ray, const TraceResult& result,
                        Vec3f* attenuation, Ray* scattered) const = 0;
 };

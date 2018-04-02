@@ -11,11 +11,23 @@ Raytracer::Raytracer(int width, int height, int num_samples, int max_depth) :
   max_depth_(max_depth),
   image_(width, height) {}
 
+void Raytracer::SetSize(int width, int height) {
+  image_.SetSize(width, height);
+}
+
+void Raytracer::SetSamples(int num_samples) {
+  num_samples_ = num_samples;
+}
+
+void Raytracer::SetMaxDepth(int max_depth) {
+  max_depth_ = max_depth;
+}
+
 Vec3f Raytracer::Trace(const Scene& scene, const Ray& ray, int depth) {
   TraceResult result;
   const Object* obj = scene.Trace(ray, 0.001, FLT_MAX, &result);
 
-  if (obj != nullptr) {
+  if (obj) {
     Vec3f attenuation;
     Ray scattered;
     if (depth < max_depth_ &&

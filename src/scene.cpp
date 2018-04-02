@@ -8,6 +8,10 @@ void Scene::AddObject(const Object* obj) {
   objects_.push_back(obj);
 }
 
+void Scene::Clear() {
+  objects_.clear();
+}
+
 const Object* Scene::Trace(const Ray& ray, float start, float end,
                            TraceResult* result) const {
   const Object* obj = nullptr;

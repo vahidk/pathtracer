@@ -10,6 +10,10 @@
 #include "./ray.h"
 
 struct Object {
+  Object() = default;
+  Object(Geometry* geometry, Material* material)
+         : geometry(geometry), material(material) {}
+
   Geometry* geometry;
   Material* material;
 };
@@ -19,6 +23,7 @@ class Scene {
   Scene() = default;
 
   void AddObject(const Object* obj);
+  void Clear();
 
   const Object* Trace(const Ray& ray, float start, float end,
                       TraceResult* result) const;

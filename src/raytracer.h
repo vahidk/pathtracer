@@ -13,6 +13,10 @@ class Raytracer {
  public:
   Raytracer(int width, int height, int num_samples, int max_depth);
 
+  void SetSize(int width, int height);
+  void SetSamples(int num_samples);
+  void SetMaxDepth(int max_depth);
+
   Vec3f Trace(const Scene& scene, const Ray& ray, int depth);
 
   const Image<RGBA>& Render(const Scene& scene, const Camera& camera);

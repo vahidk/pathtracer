@@ -4,3 +4,7 @@
 [submodule "3rdparty/tinyobjloader"]
 	path = 3rdparty/tinyobjloader
 	url = https://github.com/syoyo/tinyobjloader.git
+[submodule "3rdparty/lua"]
+	path = 3rdparty/lua
+  url = https://github.com/LuaDist/lua.git
+  branch = lua-5.3

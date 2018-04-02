@@ -35,6 +35,9 @@
         "__split_buffer": "cpp",
         "utility": "cpp",
         "iostream": "cpp",
-        "__string": "cpp"
+        "__string": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "set": "cpp"
     }
 }
