@@ -7,7 +7,8 @@ set_size(640, 480)
 num_frames = 300
 
 from = vec3(4, 1, 2)
-to = vec3(0, 0, -1)
+to = vec3(-4, 1, 2)
+target = vec3(0, 0, -1)
 up = vec3(0, 1, 0)
 
 for i = 1,num_frames do
@@ -16,8 +17,8 @@ for i = 1,num_frames do
 
   c = from:lerp(to, i / num_frames)
 
-  look_at(c.x, c.y, c.z, to.x, to.y, to.z, up.x, up.y, upz)
-  set_perspective(45, 1.33, 0.5, from:distance(to))
+  look_at(c.x, c.y, c.z, target.x, target.y, target.z, up.x, up.y, up.z)
+  set_perspective(45, 1.33, 0.1, from:distance(to))
 
   sphere_g = Geometry.sphere(0, -1000, -1, 999.5)
   material_g = Material.lambertian(0.5, 0.5, 0.5)
