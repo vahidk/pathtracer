@@ -166,8 +166,8 @@ int SetSize(lua_State* ls) {
   int width = GetInt(ls, 1);
   int height = GetInt(ls, 2);
 
-  Raytracer* raytracer = GetGlobalPointer<Raytracer>(ls, "raytracer_");
-  raytracer->SetSize(width, height);
+  Pathtracer* pathtracer = GetGlobalPointer<Pathtracer>(ls, "pathtracer_");
+  pathtracer->SetSize(width, height);
   return 0;
 }
 
@@ -208,11 +208,11 @@ int AddObject(lua_State* ls) {
 int Render(lua_State* ls) {
   const char* filename = lua_tostring(ls, 1);
 
-  Raytracer* raytracer = GetGlobalPointer<Raytracer>(ls, "raytracer_");
+  Pathtracer* pathtracer = GetGlobalPointer<Pathtracer>(ls, "pathtracer_");
   Scene* scene = GetGlobalPointer<Scene>(ls, "scene_");
   Camera* camera = GetGlobalPointer<Camera>(ls, "camera_");
 
-  const Image<RGBA>& image = raytracer->Render(*scene, *camera);
+  const Image<RGBA>& image = pathtracer->Render(*scene, *camera);
   WriteImage(filename, image);
   return 0;
 }
@@ -220,7 +220,7 @@ int Render(lua_State* ls) {
 // Script
 
 Script::Script()
-  : raytracer_(640, 480, 64, 10),
+  : pathtracer_(640, 480, 64, 10),
     camera_(Vec3f(0, 0, 1), Vec3f(0, 0, 0), Vec3f(0, 1, 0), 45, 1.33f, 0, 1) {
 
   lua_state_ = luaL_newstate();
@@ -240,8 +240,8 @@ Script::Script()
   lua_register(lua_state_, "render", Render);
 
   // Push global variables
-  lua_pushlightuserdata(lua_state_, &raytracer_);
-  lua_setglobal(lua_state_, "raytracer_");
+  lua_pushlightuserdata(lua_state_, &pathtracer_);
+  lua_setglobal(lua_state_, "pathtracer_");
 
   lua_pushlightuserdata(lua_state_, &scene_);
   lua_setglobal(lua_state_, "scene_");

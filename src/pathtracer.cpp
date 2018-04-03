@@ -5,26 +5,26 @@
 
 #include "./concurrency.h"
 #include "./rand.h"
-#include "./raytracer.h"
+#include "./pathtracer.h"
 
-Raytracer::Raytracer(int width, int height, int num_samples, int max_depth) :
+Pathtracer::Pathtracer(int width, int height, int num_samples, int max_depth) :
   num_samples_(num_samples),
   max_depth_(max_depth),
   image_(width, height) {}
 
-void Raytracer::SetSize(int width, int height) {
+void Pathtracer::SetSize(int width, int height) {
   image_.SetSize(width, height);
 }
 
-void Raytracer::SetSamples(int num_samples) {
+void Pathtracer::SetSamples(int num_samples) {
   num_samples_ = num_samples;
 }
 
-void Raytracer::SetMaxDepth(int max_depth) {
+void Pathtracer::SetMaxDepth(int max_depth) {
   max_depth_ = max_depth;
 }
 
-Vec3f Raytracer::Trace(const Scene& scene, const Ray& ray, int depth) const {
+Vec3f Pathtracer::Trace(const Scene& scene, const Ray& ray, int depth) const {
   TraceResult result;
   const Object* obj = scene.Trace(ray, 0.001, FLT_MAX, &result);
 
@@ -44,7 +44,7 @@ Vec3f Raytracer::Trace(const Scene& scene, const Ray& ray, int depth) const {
   }
 }
 
-const Image<RGBA>& Raytracer::Render(const Scene& scene, const Camera& camera) {
+const Image<RGBA>& Pathtracer::Render(const Scene& scene, const Camera& camera) {
   float inv_width = 1.0f / image_.Width();
   float inv_height = 1.0f / image_.Height();
   ParallelFor(0, image_.Height(), [&](int j){

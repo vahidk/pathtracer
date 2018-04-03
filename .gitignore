@@ -1,5 +1,5 @@
 .DS_Store
-raytracer
+pathtracer
 3rdparty
 CMake*
 CPack*

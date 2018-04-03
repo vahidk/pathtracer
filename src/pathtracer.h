@@ -9,9 +9,9 @@
 #include "./scene.h"
 #include "./vec3.h"
 
-class Raytracer {
+class Pathtracer {
  public:
-  Raytracer(int width, int height, int num_samples, int max_depth);
+  Pathtracer(int width, int height, int num_samples, int max_depth);
 
   void SetSize(int width, int height);
   void SetSamples(int num_samples);

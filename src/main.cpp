@@ -3,7 +3,7 @@
 #include <functional>
 #include <random>
 
-#include "./raytracer.h"
+#include "./pathtracer.h"
 #include "./script.h"
 
 void SampleScene() {
@@ -44,8 +44,8 @@ void SampleScene() {
   Vec3f up(0, 1, 0);
   Camera camera(from, to, up, 45, 1.33f, 0.2f, Length(to - from));
 
-  Raytracer raytracer(640, 480, 64, 10);
-  const Image<RGBA>& image = raytracer.Render(scene, camera);
+  Pathtracer pathtracer(640, 480, 64, 10);
+  const Image<RGBA>& image = pathtracer.Render(scene, camera);
 
   WriteImage("output.jpg", image);
 }

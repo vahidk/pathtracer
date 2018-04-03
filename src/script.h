@@ -7,7 +7,7 @@ extern "C" {
 #include <lua.h>
 }
 
-#include "./raytracer.h"
+#include "./pathtracer.h"
 
 class Script {
  public:
@@ -18,7 +18,7 @@ class Script {
 
  private:
   lua_State* lua_state_;
-  Raytracer raytracer_;
+  Pathtracer pathtracer_;
   Scene scene_;
   Camera camera_;
 };

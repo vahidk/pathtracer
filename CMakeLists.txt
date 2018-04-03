@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.6)
 
-project(raytracer)
+project(pathtracer)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
@@ -24,13 +24,13 @@ file(GLOB SOURCES
   src/*.cpp
 )
 
-add_executable(raytracer ${SOURCES})
+add_executable(pathtracer ${SOURCES})
 
 add_subdirectory(3rdparty/lua)
 add_subdirectory(3rdparty/tinyobjloader)
 
-target_link_libraries(raytracer liblua)
-target_include_directories(raytracer PUBLIC
+target_link_libraries(pathtracer liblua)
+target_include_directories(pathtracer PUBLIC
   3rdparty/lua
   3rdparty/lua/src
   3rdparty/stb

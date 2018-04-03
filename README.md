@@ -1,9 +1,9 @@
-# raytracer
-A simple raytracer in C++.
+# Pathtracer
+A simple pathtracer in C++.
 
 Sample usage:
 ```
 cmake .
 make
-./raytracer scripts/simple.lua
+./pathtracer scripts/simple.lua
 ```
